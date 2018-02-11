@@ -1,14 +1,21 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using System.Configuration;
+using DELabsClub.Pages;
+using OpenQA.Selenium;
 
 namespace DELabsClub
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
+            IWebDriver driver;
+
+            HomePage home = new HomePage(driver);
+            
         }
     }
 }
