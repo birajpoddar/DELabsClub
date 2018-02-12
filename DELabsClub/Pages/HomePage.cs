@@ -7,9 +7,9 @@ using OpenQA.Selenium;
 
 namespace DELabsClub.Pages
 {
-    class HomePage : BaseTemplate
+    class HomePage //: BaseTemplate
     {
-        public HomePage(IWebDriver driver) : base(driver)
+        public HomePage(IWebDriver driver) //: base(driver)
         {
             
         }
