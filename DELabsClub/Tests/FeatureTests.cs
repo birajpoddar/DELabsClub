@@ -8,42 +8,32 @@ using OpenQA.Selenium.Chrome;
 using Shouldly;
 using System.Threading;
 
-namespace DELabsClub
+namespace DELabsClub.Tests
 {
     [TestFixture]
-    public class UnitTest1 : BaseTest
+    public class FeatureTests : BaseTest
     {
-        [OneTimeSetUp]
-        public void SetBrowser()
-        {
-            driver = new ChromeDriver();
-        }
-
-        [OneTimeTearDown]
-        public void CloseBrowser()
-        {
-            driver.Quit();
-        }
-
         [TestCase(TestName = "1. Alert Test"), Order(1)]
         public void OpenBrowser()
         {
-
             //HomePage home = new HomePage(driver);
 
             // Gets the URL of the home page from App.config
             url = ConfigurationManager.AppSettings["HomeUrl"];
+            log.Info("Got the url from config file");
 
             // Maximise Window
             driver.Manage().Window.Maximize();
+            log.Info("Browser maximized");
 
             // Navigates to the URL
             driver.Url = url;
-            //driver.Navigate().GoToUrl(url);
+            log.Info("Browsing to the URL");
 
             // Scrolls the page till the bottom
             IJavaScriptExecutor javaScript = (IJavaScriptExecutor)driver;
             javaScript.ExecuteScript("window.scrollTo(0,document.body.scrollHeight)");
+            log.Info("Scrolling the page till bottom");
 
             // Finds the 'Contact Us' Button
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
@@ -105,6 +95,16 @@ namespace DELabsClub
         public void WindowTest()
         {
 
+        }
+
+        [TestCase("yes", TestName = "6. Logging Test"), Order(6)]
+        public void LoggerTest(string str1)
+        {
+            log.Debug(str1 + "-Debug");
+            log.Info(str1 + "-Info");
+            log.Warn(str1 + "-Warn");
+            log.Error(str1 + "-Error");
+            log.Fatal(str1 + "-Fatal");
         }
     }
 }
